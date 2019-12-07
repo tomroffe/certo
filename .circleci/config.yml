@@ -45,14 +45,11 @@ jobs:
       # https://pytest.org
       # https://nose.readthedocs.io
       - run:
-          name: Run Unit Tests
+          name: Run Tests
           command: |
             . venv/bin/activate
-            nosetests
-
-      - store_test_results:
-          path: test-results
-
+            coverage run test.py
+            coverage report -m procudo
+            coverage html
       - store_artifacts:
-          path: test-reports
-          destination: test-reports
+          path: htmlcov
