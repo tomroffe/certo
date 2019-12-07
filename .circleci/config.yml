@@ -28,7 +28,7 @@ jobs:
             - v1-dependencies-
 
       - run:
-          name: install dependencies
+          name: Install Dependencies
           command: |
             python3 -m venv venv
             . venv/bin/activate
@@ -45,10 +45,13 @@ jobs:
       # https://pytest.org
       # https://nose.readthedocs.io
       - run:
-          name: run tests
+          name: Run Unit Tests
           command: |
             . venv/bin/activate
             nosetests
+
+      - store_test_results:
+          path: test-results
 
       - store_artifacts:
           path: test-reports
