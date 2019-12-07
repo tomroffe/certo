@@ -1,0 +1,10 @@
+[run]
+omit =
+    */.local/*
+    */.venv/* 
+    /usr/*
+
+[report]
+
+exclude_lines =
+    if __name__ == .__main__.:
