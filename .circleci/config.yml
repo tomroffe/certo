@@ -73,6 +73,6 @@ workflows:
       - init
       - build:
           requires:
-            - flow
+            - init
 
 
