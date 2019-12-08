@@ -38,6 +38,7 @@ jobs:
           command: |
             mkdir -p data
             cd .cfssl/
+            mkdir -p pki/clients
             cfssl genkey --initca conf/openvpn-ca-csr.json | cfssljson -bare pki/ca
             cfssl gencert -ca pki/ca.pem -ca-key pki/ca-key.pem -config conf/openvpn-ca-config.json -profile="server" -hostname="server" conf/openvpn-server-csr.json | cfssljson -bare pki/server
             cfssl gencert -ca pki/ca.pem -ca-key pki/ca-key.pem -config conf/openvpn-ca-config.json -profile="client" -hostname="client" conf/openvpn-client-csr.json | cfssljson -bare pki/clients/client
