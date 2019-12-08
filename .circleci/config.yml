@@ -25,12 +25,12 @@ jobs:
           command: |
             cd /tmp/
             wget https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssljson_1.4.1_linux_amd64 -o cfssljson
-            mv cfssljson /usr/local/bin/
-            chmod +x /usr/local/bin/cfssljson
+            sudo mv cfssljson /usr/local/bin/
+            sudo chmod +x /usr/local/bin/cfssljson
 
             wget https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssl_1.4.1_linux_amd64 -o cfssl
-            mv cfssl /usr/local/bin/
-            chmod +x /usr/local/bin/cfssl
+            sudo mv cfssl /usr/local/bin/
+            sudo chmod +x /usr/local/bin/cfssl
       - run:
           name: Generate CA, Server and Client Certificates
           command: |
