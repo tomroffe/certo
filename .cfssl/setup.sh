@@ -6,17 +6,17 @@ set -o pipefail
 
 CA_KEY=./pki/ca-key.pem
 if [[ ! -f "$CA_KEY" ]]; then
-    cfssl genkey --initca conf/openvpn-ca-csr.json | cfssljson -bare pki/ca
+    ./cfssl genkey --initca conf/openvpn-ca-csr.json | cfssljson -bare pki/ca
 fi
 
 SERVER_KEY=./pki/server-key.pem
 if [[ ! -f "$SERVER_KEY" ]]; then
-    cfssl gencert -ca pki/ca.pem -ca-key pki/ca-key.pem -config conf/openvpn-ca-config.json -profile="server" -hostname="server" conf/openvpn-server-csr.json | cfssljson -bare pki/server
+    ./cfssl gencert -ca pki/ca.pem -ca-key pki/ca-key.pem -config conf/openvpn-ca-config.json -profile="server" -hostname="server" conf/openvpn-server-csr.json | cfssljson -bare pki/server
 fi
 
 CLIENT_KEY=./pki/clients/client-key.pem
 if [[ ! -f "$CLIENT_KEY" ]]; then
-    cfssl gencert -ca pki/ca.pem -ca-key pki/ca-key.pem -config conf/openvpn-ca-config.json -profile="client" -hostname="client" conf/openvpn-client-csr.json | cfssljson -bare pki/clients/client
+    ./cfssl gencert -ca pki/ca.pem -ca-key pki/ca-key.pem -config conf/openvpn-ca-config.json -profile="client" -hostname="client" conf/openvpn-client-csr.json | cfssljson -bare pki/clients/client
 fi
 
 TA_KEY=./pki/ta.key
