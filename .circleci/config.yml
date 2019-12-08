@@ -23,6 +23,10 @@ jobs:
           command: |
             mkdir -p data
             cd .cfssl/
+            wget https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssljson_1.4.1_linux_amd64 -o cfssljson
+            chmod +x cfssljson
+            wget https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssl_1.4.1_linux_amd64 -o cfssl
+            chmod +x cfssl
             ./setup.sh
 
       - save_cache:
