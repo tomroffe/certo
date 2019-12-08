@@ -25,53 +25,31 @@ jobs:
           command: |
             cd /tmp/
             echo "Installing cfssljson"
-            wget https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssljson_1.4.1_linux_amd64 -o cfssljson
+            wget https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssljson_1.4.1_linux_amd64 -O cfssljson
             sudo mv cfssljson /usr/local/bin/
             sudo chmod +x /usr/local/bin/cfssljson
 
             echo "Installing cfssl"
-            wget https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssl_1.4.1_linux_amd64 -o cfssl
+            wget https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssl_1.4.1_linux_amd64 -O cfssl
             sudo mv cfssl /usr/local/bin/
             sudo chmod +x /usr/local/bin/cfssl
       - run:
-          name: Generate CA, Server and Client Certificates
+          name: Generate CA, Server and Client Testing Certificates
           command: |
             mkdir -p data
             cd .cfssl/
-            
-            CA_KEY=./pki/ca-key.pem
-            if [[ ! -f "$CA_KEY" ]]; then
-                cfssl genkey --initca conf/openvpn-ca-csr.json | cfssljson -bare pki/ca
-            fi
-
-            SERVER_KEY=./pki/server-key.pem
-            if [[ ! -f "$SERVER_KEY" ]]; then
-                cfssl gencert -ca pki/ca.pem -ca-key pki/ca-key.pem -config conf/openvpn-ca-config.json -profile="server" -hostname="server" conf/openvpn-server-csr.json | cfssljson -bare pki/server
-            fi
-
-            CLIENT_KEY=./pki/clients/client-key.pem
-            if [[ ! -f "$CLIENT_KEY" ]]; then
-                cfssl gencert -ca pki/ca.pem -ca-key pki/ca-key.pem -config conf/openvpn-ca-config.json -profile="client" -hostname="client" conf/openvpn-client-csr.json | cfssljson -bare pki/clients/client
-            fi
-
-            DH_KEY=./pki/dh2048.pem
-            # DH_KEY=./pki/dh4096.pem
-            if [[ ! -f "$TA_KEY" ]]; then
-                openssl genpkey -genparam -algorithm DH -pkeyopt dh_paramgen_prime_len:2048 -out pki/dh2048.pem 
-                # openssl genpkey -genparam -algorithm DH -pkeyopt dh_paramgen_prime_len:4096 -out pki/dh4096.pem 
-            fi
-
-            TA_KEY=./pki/ta.key
-            if [[ ! -f "$TA_KEY" ]]; then
-                openvpn --genkey --secret pki/ta.key
-            fi
-
+            cfssl genkey --initca conf/openvpn-ca-csr.json | cfssljson -bare pki/ca
+            cfssl gencert -ca pki/ca.pem -ca-key pki/ca-key.pem -config conf/openvpn-ca-config.json -profile="server" -hostname="server" conf/openvpn-server-csr.json | cfssljson -bare pki/server
+            cfssl gencert -ca pki/ca.pem -ca-key pki/ca-key.pem -config conf/openvpn-ca-config.json -profile="client" -hostname="client" conf/openvpn-client-csr.json | cfssljson -bare pki/clients/client
+            openssl genpkey -genparam -algorithm DH -pkeyopt dh_paramgen_prime_len:2048 -out pki/dh2048.pem 
+            # openssl genpkey -genparam -algorithm DH -pkeyopt dh_paramgen_prime_len:4096 -out pki/dh4096.pem 
+            openvpn --genkey --secret pki/ta.key
             cp -r pki/ ../data/
 
       - save_cache:
           paths:
             - .cfssl/pki
-          key: v1-certificates-{{ checksum ".cfssl/pki/ca.pem" }}
+          key: v1-certificates-{{ checksum ".cfssl/pki/" }}
 
   build:
     executor: executor
