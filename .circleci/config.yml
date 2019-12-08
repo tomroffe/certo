@@ -58,6 +58,8 @@ jobs:
             coverage run tests.py
             coverage report -m procudo
             coverage html
+            codecov
+
       - store_artifacts:
           path: htmlcov
 
