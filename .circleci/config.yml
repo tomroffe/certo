@@ -21,13 +21,16 @@ jobs:
             sudo apt-get update
             sudo apt-get install openvpn
       - run:
-          name: Fetch cfssl
+          name: Install CFSSL
           command: |
-            cd .cfssl/
+            cd /tmp/
             wget https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssljson_1.4.1_linux_amd64 -o cfssljson
-            chmod +x cfssljson
+            mv cfssljson /usr/local/bin/
+            chmod +x /usr/local/bin/cfssljson
+
             wget https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssl_1.4.1_linux_amd64 -o cfssl
-            chmod +x cfssl
+            mv cfssl /usr/local/bin/
+            chmod +x /usr/local/bin/cfssl
       - run:
           name: Generate CA, Server and Client Certificates
           command: |
