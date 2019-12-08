@@ -8,27 +8,29 @@ executors:
   executor:
     machine:
       image: ubuntu-1604:201903-01
-    working_directory: /tmp
+    working_directory: /tmp/procudo
 
 jobs: 
   init:
     executor: executor
     steps:
       - checkout
-
+      - run:
+          name: Install OpenVPN
+          command: |
+            sudo apt-get install openvpn
       - run:
           name: Fetch cfssl
           command: |
-            mkdir -p data
             cd .cfssl/
             wget https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssljson_1.4.1_linux_amd64 -o cfssljson
             chmod +x cfssljson
             wget https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssl_1.4.1_linux_amd64 -o cfssl
             chmod +x cfssl
-
       - run:
           name: Generate CA, Server and Client Certificates
           command: |
+            mkdir -p data
             cd .cfssl/
             ./setup.sh
 
