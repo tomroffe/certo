@@ -47,10 +47,6 @@ jobs:
             openvpn --genkey --secret pki/ta.key
             cp -r pki/ ../data/
 
-      - save_cache:
-          paths:
-            - .cfssl/pki
-          key: v1-certificates-{{ checksum ".cfssl/pki/" }}
 
   build:
     executor: executor
