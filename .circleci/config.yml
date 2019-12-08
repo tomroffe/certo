@@ -53,7 +53,9 @@ jobs:
     steps:  
       - run:
           name: "Install Python"
-          command: pyenv global 3.7.4
+          command: |
+            pyenv install 3.7.4
+            pyenv global 3.7.4
 
       - run:
           name: "Install Dependencies"
