@@ -16,12 +16,12 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install OpenVPN
+          name: "Install OpenVPN"
           command: |
             sudo apt-get update
             sudo apt-get install openvpn
       - run:
-          name: Install CFSSL
+          name: "Install CFSSL"
           command: |
             cd /tmp/
             echo "Installing cfssljson"
@@ -34,7 +34,7 @@ jobs:
             sudo mv cfssl /usr/local/bin/
             sudo chmod +x /usr/local/bin/cfssl
       - run:
-          name: Generate CA, Server and Client Testing Certificates
+          name: "Generate CA, Server and Client Testing Certificates"
           command: |
             mkdir -p data
             cd .cfssl/
@@ -52,10 +52,11 @@ jobs:
     executor: executor
     steps:  
       - run:
-          name: Install Python
+          name: "Install Python"
           command: pyenv global 3.7.4
 
-          name: Install Dependencies
+      - run:
+          name: "Install Dependencies"
           command: |
             python -m venv venv
             . venv/bin/activate
