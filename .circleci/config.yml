@@ -2,21 +2,20 @@
 #
 # Check https://circleci.com/docs/2.0/language-python/ for more details
 #
-version: 2
+version: 2.1
+
+executors:
+  executor:
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: /tmp
+
 jobs: 
   init:
-    docker:
-      - image: circleci/python:3.7.4
-
-    working_directory: ~/repo
-
+    executor: executor
     steps:
       - checkout
 
-      # - restore_cache:
-      #     keys:
-      #       - v1-certificates-{{ checksum ".cfssl/pki/ca.pem" }}
-      #       - v1-certificates-
       - run:
           name: Fetch cfssl
           command: |
@@ -39,11 +38,7 @@ jobs:
           key: v1-certificates-{{ checksum ".cfssl/pki/ca.pem" }}
 
   build:
-    docker:
-      - image: circleci/python:3.7.4
-    
-    working_directory: ~/repo
-
+    executor: executor
     steps:  
       - run:
           name: Install Dependencies
@@ -76,4 +71,8 @@ workflows:
   build_and_test:
     jobs:
       - init
-      - build
+      - build:
+          requires:
+            - flow
+
+
