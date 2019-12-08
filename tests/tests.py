@@ -64,11 +64,11 @@ class BasicTests(unittest.TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_default_profile_creation_endpoint(self):
-        response = self.app.get('/v1/config/tom')
+        response = self.app.get('/v1/config/client')
         self.assertEqual(response.status_code, 200)
 
     def test_named_profile_creation_endpoint(self):
-        response = self.app.get('/v1/config/default/tom')
+        response = self.app.get('/v1/config/default/client')
         self.assertEqual(response.status_code, 200)
 
     def test_envio_throws_exception(self):

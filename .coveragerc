@@ -1,4 +1,5 @@
 [run]
+include=procudo/*
 omit =
     */.local/*
     */.venv/* 

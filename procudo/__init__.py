@@ -11,7 +11,7 @@ from flask import render_template
 from flask import Response
 from jinja2.exceptions import TemplateNotFound
 
-from errors import notfound
+from .errors import notfound
 
 env = Env()
 try:
@@ -42,9 +42,11 @@ dictConfig({
 app = Flask(__name__)
 app.register_error_handler(404, notfound)
 if app.config["ENV"] == "prod":
-    app.config.from_object("config.ProdConfig")
+    from procudo.config import ProdConfig
+    app.config.from_object(ProdConfig)
 else:
-    app.config.from_object("config.Config")
+    from procudo.config import Config
+    app.config.from_object(Config)
 
 keys, certs = [], []
 
