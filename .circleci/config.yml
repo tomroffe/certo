@@ -17,9 +17,8 @@ jobs:
       #     keys:
       #       - v1-certificates-{{ checksum ".cfssl/pki/ca.pem" }}
       #       - v1-certificates-
-
       - run:
-          name: Generate CA, Server and Client Certificates
+          name: Fetch cfssl
           command: |
             mkdir -p data
             cd .cfssl/
@@ -27,6 +26,11 @@ jobs:
             chmod +x cfssljson
             wget https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssl_1.4.1_linux_amd64 -o cfssl
             chmod +x cfssl
+
+      - run:
+          name: Generate CA, Server and Client Certificates
+          command: |
+            cd .cfssl/
             ./setup.sh
 
       - save_cache:
