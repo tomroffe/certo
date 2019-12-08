@@ -1,4 +1,8 @@
+#!/bin/sh
 
+set -o nounset
+set -o errexit
+set -o pipefail
 
 CA_KEY=./pki/ca-key.pem
 if [[ ! -f "$CA_KEY" ]]; then

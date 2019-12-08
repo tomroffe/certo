@@ -13,10 +13,10 @@ jobs:
     steps:
       - checkout
 
-      - restore_cache:
-          keys:
-            - v1-certificates-{{ checksum ".cfssl/pki/ca.pem" }}
-            - v1-certificates-
+      # - restore_cache:
+      #     keys:
+      #       - v1-certificates-{{ checksum ".cfssl/pki/ca.pem" }}
+      #       - v1-certificates-
 
       - run:
           name: Generate CA, Server and Client Certificates
