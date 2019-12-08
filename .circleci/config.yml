@@ -59,15 +59,26 @@ jobs:
       - attach_workspace:
           at: /tmp/procudo
       - run:
+          name: "Install Build Tools"
+          command: |
+              apt-get update
+              apt-get install install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
+      - run:
           name: "Install Python"
           command: |
-            pyenv install 3.7.2
-            pyenv global 3.7.2
+            mkdir -p /tmp/py_install
+            cd /tmp/py_install
+            wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
+            tar -xf Python-3.7.4.tgz
+            cd Python-3.7.4
+            ./configure --enable-optimizations
+            make -j 2
+            sudo make altinstall
 
       - run:
           name: "Install Dependencies"
           command: |
-            python -m venv venv
+            python3 -m venv venv
             . venv/bin/activate
             pip install --upgrade pip
             pip install -r requirements.txt
