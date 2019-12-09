@@ -49,12 +49,10 @@ jobs:
             openssl genpkey -genparam -algorithm DH -pkeyopt dh_paramgen_prime_len:2048 -out pki/dh2048.pem 
             # openssl genpkey -genparam -algorithm DH -pkeyopt dh_paramgen_prime_len:4096 -out pki/dh4096.pem 
             openvpn --genkey --secret pki/ta.key
-            cp -r pki/ ../data/
       - persist_to_workspace:
           root: /tmp/procudo
           paths:
             - .cfssl/pki
-            - data
 
 
   build:
@@ -80,6 +78,8 @@ jobs:
           name: Run Tests
           command: |
             . venv/bin/activate
+            mkdir -p data
+            cp -r .cfssl/pki/* data/
             coverage run tests.py
             coverage report -m procudo
             coverage html
