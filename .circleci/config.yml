@@ -78,7 +78,9 @@ jobs:
       - run:
           name: "Install Dependencies"
           command: |
-            python3 -m venv venv
+            pyenv versions
+            pyenv install --list
+            python -m venv venv
             . venv/bin/activate
             pip install --upgrade pip
             pip install -r requirements.txt
