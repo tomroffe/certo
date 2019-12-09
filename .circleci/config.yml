@@ -58,28 +58,28 @@ jobs:
       - checkout
       - attach_workspace:
           at: /tmp/procudo
-      - run:
-          name: "Install Build Tools"
-          command: |
-              sudo apt-get update
-              sudo apt-get install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
-      - run:
-          name: "Install Python"
-          command: |
-            mkdir -p /tmp/py_install
-            cd /tmp/py_install
-            wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
-            tar -xf Python-3.7.4.tgz
-            cd Python-3.7.4
-            ./configure
-            make -j 2
-            sudo make altinstall
+      # - run:
+      #     name: "Install Build Tools"
+      #     command: |
+      #         sudo apt-get update
+      #         sudo apt-get install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
+      # - run:
+      #     name: "Install Python"
+      #     command: |
+      #       mkdir -p /tmp/py_install
+      #       cd /tmp/py_install
+      #       wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
+      #       tar -xf Python-3.7.4.tgz
+      #       cd Python-3.7.4
+      #       ./configure
+      #       make -j 2
+      #       sudo make altinstall
 
       - run:
           name: "Install Dependencies"
           command: |
-            pyenv versions
-            pyenv install --list
+            sudo pyenv update
+            pyenv install 3.7.4
             python -m venv venv
             . venv/bin/activate
             pip install --upgrade pip
