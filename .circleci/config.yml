@@ -11,12 +11,12 @@ executors:
     working_directory: /tmp/procudo
   container:
     docker:
-      - image: 
+      - image: circleci/python:3.7.4
     working_directory: /tmp/procudo
 
 jobs: 
   init:
-    executor: executor
+    executor: vmhost
     steps:
       - checkout
       - run:
