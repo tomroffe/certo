@@ -1,16 +1,22 @@
 # Procudo
 
-[![CircleCI](https://circleci.com/gh/tomroffe/procudo.svg?style=svg&circle-token=3a96ea9c148404e1332c40c07666a18df8cbd17a)](https://circleci.com/gh/tomroffe/procudo) [![GitHub release](https://img.shields.io/github/release/tomroffe/procudo.svg)](https://github.com/tomroffe/procudo/releases/) [![GitHub issues](https://img.shields.io/github/issues/tomroffe/procudo.svg)](https://github.com/tomroffe/procudo/issues/)
+## OpenVPN User Profile API
 
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/tomroffe/procudo/graphs/commit-activity) [![Website procudo.altobyte.io](https://img.shields.io/website-up-down-green-red/https/procudo.altobyte.io.svg)](https://procudo.altobyte.io/)
+[![GitHub release](https://img.shields.io/github/release/tomroffe/procudo.svg)](https://github.com/tomroffe/procudo/releases/) ![CircleCI](https://img.shields.io/circleci/build/github/tomroffe/procudo/master)
 
-OpenVPN User Profile API
+![Codecov](https://img.shields.io/codecov/c/gh/tomroffe/procudo) ![Requires.io](https://img.shields.io/requires/github/tomroffe/procudo) [![GitHub issues](https://img.shields.io/github/issues/tomroffe/procudo.svg)](https://github.com/tomroffe/procudo/issues/)
 
-## Setup
+[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/tomroffe/procudo/blob/master/LICENSE) [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+
+### Installation & Setup
 
 <!-- TODO -->
 
-### Requirements
+#### Requirements
+
+<!-- TODO -->
+
+#### Setup
 
 <!-- TODO -->
 
@@ -22,6 +28,6 @@ OpenVPN User Profile API
 
 <!-- TODO -->
 
-## Usage
+### Usage
 
 <!-- TODO -->
