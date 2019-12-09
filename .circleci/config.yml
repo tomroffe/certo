@@ -81,7 +81,7 @@ jobs:
             mkdir -p data
             cp -r .cfssl/pki/* data/
             coverage run tests.py
-            coverage report -m procudo
+            coverage report
             coverage html
             codecov
             ls -la
