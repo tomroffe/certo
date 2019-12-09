@@ -31,6 +31,7 @@ if [[ ! -f "$TA_KEY" ]]; then
     openvpn --genkey --secret pki/ta.key
 fi
 
+mkdir -p ../data/
 cp -r pki/ ../data/
 
 
