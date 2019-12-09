@@ -57,7 +57,7 @@ jobs:
 
 
   build:
-    executor: executor
+    executor: container
     steps:  
       - checkout
       - attach_workspace:
