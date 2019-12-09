@@ -63,25 +63,6 @@ jobs:
       - attach_workspace:
           at: /tmp/procudo
       - run:
-          name: "Install Build Tools"
-          command: |
-              curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-              exec $SHELL
-              pyenv update
-
-      # - run:
-      #     name: "Install Python"
-      #     command: |
-      #       mkdir -p /tmp/py_install
-      #       cd /tmp/py_install
-      #       wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
-      #       tar -xf Python-3.7.4.tgz
-      #       cd Python-3.7.4
-      #       ./configure
-      #       make -j 2
-      #       sudo make altinstall
-
-      - run:
           name: "Install Dependencies"
           command: |
             pyenv install 3.7.4
