@@ -13,6 +13,11 @@ executors:
     docker:
       - image: circleci/python:3.7.4
     working_directory: /tmp/procudo
+  buildpack:
+    docker:
+      - image: circleci/buildpack-deps:stretch
+    working_directory: /tmp/procudo
+          
 
 jobs: 
   init:
@@ -94,7 +99,7 @@ jobs:
       
 
   build:
-    executor: vmhost
+    executor: buildpack
     steps:  
       - setup_remote_docker
       - checkout

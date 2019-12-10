@@ -6,7 +6,7 @@
 
 [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/tomroffe/procudo/blob/master/LICENSE) [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 
-### OpenVPN User Profile API 
+## OpenVPN User Profile API
 
 ### Installation & Setup
 
