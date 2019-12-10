@@ -94,7 +94,7 @@ jobs:
       
 
   build:
-    executor: container
+    executor: vmhost
     steps:  
       - setup_remote_docker
       - checkout
