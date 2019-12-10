@@ -106,11 +106,9 @@ jobs:
       - run:
           name: Build and push Docker image
           command: |
-            echo 'export TAG=0.0.1' >> $BASH_ENV
-            echo 'export IMAGE_NAME=procudo' >> $BASH_ENV 
-            docker build -t toptop/$IMAGE_NAME:$TAG .
+            docker build -t toptop/procudo:0.0.1 .
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
-            docker push toptop/$IMAGE_NAME:$TAG
+            docker push toptop/procudo:0.0.1
       
 workflows:
   version: 2
