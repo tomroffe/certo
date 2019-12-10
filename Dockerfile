@@ -1,7 +1,7 @@
 FROM python:3.7.4-stretch
 
-LABEL maintainer="tom@sm4rt.io"
-LABEL "com.example.vendor"="sm4rt"
+LABEL maintainer="tom@altobyte.io"
+LABEL "com.example.vendor"="`altobyte"
 LABEL version="0.1"
 LABEL description="Generates OpenVPN Config File (ovpn), \
 cert and keys must exisit in /etc/openvpn/pki/"
