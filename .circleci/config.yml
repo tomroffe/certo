@@ -96,6 +96,7 @@ jobs:
   build:
     executor: container
     steps:  
+      - setup_remote_docker
       - checkout
       - run:
           name: Build and push Docker image
