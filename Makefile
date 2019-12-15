@@ -2,21 +2,21 @@
 NO_CACHE = false
 GIT_VERSION = $(shell git rev-parse --short HEAD)
 DOCKER_REPO = toptop
-APP_IMAGE = $(NAME):$(GIT_VERSION)
+TAG = $(shell git describe --exact-match --tags $(shell git log -n1 --pretty='%h'))
 
 build:
-	docker build -t $(DOCKER_REPO):$(NAME):0.0.1 .
+	docker build -t $(DOCKER_REPO):$(NAME):$(TAG) .
 .PHONY: build
 
 push:
-	docker push $(APP_IMAGE)
+	docker push $(DOCKER_REPO):$(NAME):$(TAG)
 .PHONY: push
 
 run:
-	docker run --rm -it -p 8000:8000 -v $(pwd)/data:/data toptop/procudo:0.0.1
+	docker run --rm -it -p 8000:8000 -v $(pwd)/data:/data $(DOCKER_REPO)/$(NAME):$(TAG)
 .PHONY: run
 
 ver:
-	@echo '$(NAME):$(GIT_VERSION)'
+	@echo '$(NAME):$(TAG)'
 .PHONY: ver
 

@@ -104,11 +104,12 @@ jobs:
       - setup_remote_docker
       - checkout
       - run:
-          name: Build and push Docker image
+          name: Build and Push Docker image
           command: |
-            docker build -t toptop/procudo:0.0.1 .
+            TAG = $(shell git describe --exact-match --tags $(git log -n1 --pretty='%h'))
+            docker build -t toptop/procudo:$TAG .
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
-            docker push toptop/procudo:0.0.1
+            docker push toptop/procudo:$TAG
       
 workflows:
   version: 2
