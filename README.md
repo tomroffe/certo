@@ -11,10 +11,16 @@
 #### Requirements
 
 - OpenVPN
-- PKI CA *+[More](#PKI)*
+- PKI CA *[More](#PKI)*
   - CFSSL or EasyRSA
 
 ### Installation & Setup
+
+#### Docker
+
+#### WSGI / Gunicurn
+
+#### Flask Development Server
 
 
 <!-- TODO -->
