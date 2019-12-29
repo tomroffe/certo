@@ -5,8 +5,8 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='procudo',
-    version="0.0.1",
     author="Tom Roffe",
+    use_scm_version=True,
     author_email="tom@altobyte.io",
     description="OpenVPN User Profile Generator API",
     long_description=long_description,
@@ -19,4 +19,5 @@ setuptools.setup(
         "Programming Language :: Python :: 3.7"
     ],
     python_requires='>=3.7',
+    setup_requires=['setuptools_scm']
 )

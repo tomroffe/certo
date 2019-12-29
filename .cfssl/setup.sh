@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+echo "CA & Certificate Creation"
+echo "TESTING ONLY - NOT FOR PRODUCTION USE"
 
 set -o nounset
 set -o errexit

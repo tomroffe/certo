@@ -1,11 +1,11 @@
 ### LOCAL PUSH INTERGRATION ###
 NO_CACHE = false
-GIT_VERSION = $(shell git rev-parse --short HEAD)
+GIT_VERSION = $(git rev-parse --short HEAD)
 DOCKER_REPO = toptop
 TAG = $(shell git describe --exact-match --tags $(shell git log -n1 --pretty='%h'))
 
 build:
-	docker build -t $(DOCKER_REPO):$(NAME):$(TAG) .
+	docker build --build-arg version_tag=$(TAG) --tag $(DOCKER_REPO)/$(NAME):$(TAG) .
 .PHONY: build
 
 push:
