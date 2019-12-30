@@ -1,6 +1,6 @@
 ### LOCAL PUSH INTERGRATION ###
 NO_CACHE = false
-GIT_VERSION = $(git rev-parse --short HEAD)
+GIT_VERSION = $(shell git rev-parse --short HEAD)
 DOCKER_REPO = toptop
 TAG = $(shell git describe --exact-match --tags $(shell git log -n1 --pretty='%h'))
 
