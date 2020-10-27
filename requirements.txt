@@ -5,7 +5,7 @@ chardet==3.0.4
 Click==7.0
 codecov==2.0.15
 coverage==5.0.1
-cryptography==2.8
+cryptography==3.2
 entrypoints==0.3
 environs==7.1.0
 flake8==3.7.9
